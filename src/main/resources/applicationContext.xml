@@ -15,5 +15,19 @@
 
     <!-- 开启aop注解方式 -->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <!--    决定是基于接口的还是基于类的代理被创建 true表示基于类，需要cglib,false表示基于接口，使用jdk的动态代理-->
     <!--    <aop:config proxy-target-class="true"/>-->
+
+
+    <bean id="allianceTestServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <ref bean="allianceTestService"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>componentWithAlliance</value>
+            </list>
+        </property>
+    </bean>
 </beans>
